@@ -24,4 +24,5 @@ class TestsArbre {
 		}
 		assertEquals(pommes, pommier.fruits);
 	}
+	
 }

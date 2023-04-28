@@ -12,6 +12,7 @@ public class Console extends Application {
 		Scene scene = new Scene(root, 700, 300);
 		primaryStage.setScene(scene);
 		primaryStage.show();
+		//CHANGEMENT
 	}
 
 
