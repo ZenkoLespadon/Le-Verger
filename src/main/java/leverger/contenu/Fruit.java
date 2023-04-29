@@ -1,14 +1,18 @@
 package leverger.contenu;
 
+import javafx.scene.image.Image;
+
 public enum Fruit {
-	CERISE("Cerise", "Rouge"),POIRE("Poire", "Jaune"),PRUNE("Prune", "Bleue"),POMME("Pomme", "Verte");
+	CERISE("Cerise", "Rouge", new Image("file:img/Cerise.png")),POIRE("Poire", "Jaune", new Image("file:img/Poire.png")),PRUNE("Prune", "Bleue", new Image("file:img/Prune.png")),POMME("Pomme", "Verte", new Image("file:img/Pomme.png"));
 
-	private final String nom;
-	private final String couleur;
+	public final String nom;
+	public final String couleur;
+	public final Image image;
 
-	Fruit(String nom, String couleur) {
+	Fruit(String nom, String couleur, Image image) {
 		this.nom = nom;
 		this.couleur = couleur;
+		this.image = image;
 	}
 
 	public String getNom() {
