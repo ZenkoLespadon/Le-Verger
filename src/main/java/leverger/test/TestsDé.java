@@ -21,5 +21,6 @@ class TestsDé {
 		faces.add(Face.BLEUE);
 		faces.add(Face.VERTE);
 		assertEquals(faces, dé.faces);
+		
 			}
 }
