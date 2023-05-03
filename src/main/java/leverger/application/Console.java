@@ -21,48 +21,122 @@ public class Console extends Application {
 		Arbre cerisier = new Arbre(Fruit.CERISE);
 		
 		ImageView vuePommier = new ImageView(pommier.image);
-		vuePommier.setFitWidth(375);
-		vuePommier.setFitHeight(400);
+		vuePommier.setFitWidth(400);
+		vuePommier.setFitHeight(425);
 		
 		ImageView vuePrunier = new ImageView(prunier.image);
-		vuePrunier.setFitWidth(375);
-		vuePrunier.setFitHeight(400);
+		vuePrunier.setFitWidth(400);
+		vuePrunier.setFitHeight(425);
 		
 		ImageView vuePoirier = new ImageView(poirier.image);
-		vuePoirier.setFitWidth(375);
-		vuePoirier.setFitHeight(400);
+		vuePoirier.setFitWidth(400);
+		vuePoirier.setFitHeight(425);
 		
 		ImageView vueCerisier = new ImageView(cerisier.image);
-		vueCerisier.setFitWidth(375);
-		vueCerisier.setFitHeight(400);
+		vueCerisier.setFitWidth(400);
+		vueCerisier.setFitHeight(425);
+		
 		
 		StackPane conteneurPommier = new StackPane();
 		conteneurPommier.getChildren().add(vuePommier);
+		imgPomme(conteneurPommier);
 		
-		ImageView vuePomme = new ImageView(Fruit.POMME.image);
-		vuePomme.setFitWidth(50);
-		vuePomme.setFitHeight(50);
+		StackPane conteneurCerisier = new StackPane();
+		conteneurCerisier.getChildren().add(vueCerisier);
+		imgCerise(conteneurCerisier);
+	
+		StackPane conteneurPoirier = new StackPane();
+		conteneurPoirier.getChildren().add(vuePoirier);
+		imgPoire(conteneurPoirier);
 		
-		ImageView vueCerise = new ImageView(Fruit.CERISE.image);
-		vueCerise.setFitWidth(40);
-		vueCerise.setFitHeight(40);
-		
-		GridPane mesPommes = new GridPane();
-		mesPommes.setPadding(new Insets (60,0,0,75));
-		mesPommes.add(vuePomme, 0, 0);
-		conteneurPommier.getChildren().add(mesPommes);
+		StackPane conteneurPrune = new StackPane();
+		conteneurPrune.getChildren().add(vuePrunier);
+		imgPrune(conteneurPrune);
 		
 		
 		root.add(conteneurPommier, 0, 0);
-		root.add(vuePrunier, 1, 0);
-		root.add(vuePoirier, 2, 0);
-		root.add(vueCerisier, 3, 0);
-		root.add(vueCerise, 0, 1);
-		Scene scene = new Scene(root, 1500, 750);
+		root.add(conteneurPrune, 1, 0);
+		root.add(conteneurPoirier, 2, 0);
+		root.add(conteneurCerisier, 3, 0);
+		//root.add(vueCerise, 0, 1);//
+		Scene scene = new Scene(root, 1600, 900);
 		primaryStage.setScene(scene);
 		primaryStage.show();
 		//CHANGEMENT
 	}
+
+
+	private void imgPomme(StackPane conteneurPommier) {
+		
+		GridPane mesPommes = new GridPane();
+		mesPommes.setPadding(new Insets (60,0,0,75));
+		
+		
+		for (int row = 0; row < 2; row++) {
+		    for (int col = 0; col < 5; col++) {
+		    	ImageView vuePomme = new ImageView(Fruit.POMME.image);
+				vuePomme.setFitWidth(50);
+				vuePomme.setFitHeight(50);
+				mesPommes.add(vuePomme, col, row);
+		    }
+		}
+
+		conteneurPommier.getChildren().add(mesPommes);
+	}
+	
+private void imgCerise(StackPane conteneurCerisier) {
+		
+		GridPane mesCerises = new GridPane();
+		mesCerises.setPadding(new Insets (60,0,0,75));
+		
+		
+		for (int row = 0; row < 2; row++) {
+		    for (int col = 0; col < 5; col++) {
+		    	ImageView vueCerise = new ImageView(Fruit.CERISE.image);
+		    	vueCerise.setFitWidth(50);
+		    	vueCerise.setFitHeight(50);
+		    	mesCerises.add(vueCerise, col, row);
+		    }
+		}
+
+		conteneurCerisier.getChildren().add(mesCerises);
+	}
+
+private void imgPoire(StackPane conteneurPoirier) {
+	
+	GridPane mesPoires = new GridPane();
+	mesPoires.setPadding(new Insets (60,0,0,75));
+	
+	
+	for (int row = 0; row < 2; row++) {
+	    for (int col = 0; col < 5; col++) {
+	    	ImageView vuePoire = new ImageView(Fruit.POIRE.image);
+	    	vuePoire.setFitWidth(50);
+	    	vuePoire.setFitHeight(50);
+	    	mesPoires.add(vuePoire, col, row);
+	    }
+	}
+
+	conteneurPoirier.getChildren().add(mesPoires);
+}
+
+private void imgPrune(StackPane conteneurPrunier) {
+	
+	GridPane mesPrunes = new GridPane();
+	mesPrunes.setPadding(new Insets (60,0,0,75));
+	
+	
+	for (int row = 0; row < 2; row++) {
+	    for (int col = 0; col < 5; col++) {
+	    	ImageView vuePrune = new ImageView(Fruit.PRUNE.image);
+	    	vuePrune.setFitWidth(50);
+	    	vuePrune.setFitHeight(50);
+	    	mesPrunes.add(vuePrune, col, row);
+	    }
+	}
+
+	conteneurPrunier.getChildren().add(mesPrunes);
+}
 
 
     public static void main(String[] args) {
