@@ -7,8 +7,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Polygon;
 import javafx.stage.Stage;
 import leverger.contenu.Arbre;
+import leverger.contenu.Dé;
+import leverger.contenu.Face;
 import leverger.contenu.Fruit;
 
 public class Console extends Application {
@@ -61,6 +66,28 @@ public class Console extends Application {
 		backgrounds.setFitWidth(1600);
 		backgrounds.setFitHeight(900);
 		
+		StackPane paneDé = new StackPane();
+        Dé dé = new Dé();
+        Face faceAleatoire = dé.lancerDé();
+        
+        Circle cercle = new Circle(45, faceAleatoire.couleur);
+        cercle.setTranslateY(30);
+        
+        Polygon triangle = new Polygon();
+        triangle.getPoints().addAll(new Double[] {
+                100.0, 20.0,
+                0.0, 200.0,
+                200.0, 200.0
+            });
+        
+        
+        triangle.setStroke(Color.BLACK);
+        triangle.setStrokeWidth(5);
+        triangle.setFill(Color.TRANSPARENT);
+	        
+	        
+	        paneDé.getChildren().addAll(triangle, cercle);
+		
 		
 		verger.add(conteneurPommier, 0, 1);
 		verger.add(conteneurPrune, 1, 1);
@@ -69,6 +96,7 @@ public class Console extends Application {
 		//root.add(vueCerise, 0, 1);//
 		root.getChildren().add(backgrounds);
 		root.getChildren().add(verger);
+		root.getChildren().add(paneDé);
 		Scene scene = new Scene(root, 1600, 900);
 		primaryStage.setScene(scene);
 		primaryStage.show();
