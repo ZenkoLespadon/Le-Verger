@@ -13,4 +13,11 @@ public class Dé {
 		faces.add(Face.BLEUE);
 		faces.add(Face.VERTE);
 	}
+	 public Face lancerDé(){
+	        int nbMin = 0;
+	        int nbMax = this.faces.size();
+	        int nbAleatoire = nbMin + (int)(Math.random() * ((nbMax - nbMin)));
+	        return faces.get(nbAleatoire);
+	        
+	    }
 }

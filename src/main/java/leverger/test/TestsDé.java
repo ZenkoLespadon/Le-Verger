@@ -23,4 +23,8 @@ class TestsDé {
 		assertEquals(faces, dé.faces);
 		
 			}
+	 @Test
+	    void testLancerDé() {
+	        Dé dé = new Dé();
+	    }
 }
