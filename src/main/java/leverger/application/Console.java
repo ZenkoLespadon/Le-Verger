@@ -3,6 +3,7 @@ package leverger.application;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
@@ -13,7 +14,10 @@ import leverger.contenu.Fruit;
 public class Console extends Application {
 	
 	public void start(Stage primaryStage) {
-		GridPane root = new GridPane();
+		StackPane root = new StackPane();
+		GridPane verger = new GridPane();
+		verger.setVisible(true);
+		
 		
 		Arbre pommier = new Arbre(Fruit.POMME);
 		Arbre prunier = new Arbre(Fruit.PRUNE);
@@ -53,12 +57,18 @@ public class Console extends Application {
 		conteneurPrune.getChildren().add(vuePrunier);
 		imgPrune(conteneurPrune);
 		
+		ImageView backgrounds = new ImageView(new Image("file:img/Background.png"));
+		backgrounds.setFitWidth(1600);
+		backgrounds.setFitHeight(900);
 		
-		root.add(conteneurPommier, 0, 0);
-		root.add(conteneurPrune, 1, 0);
-		root.add(conteneurPoirier, 2, 0);
-		root.add(conteneurCerisier, 3, 0);
+		
+		verger.add(conteneurPommier, 0, 1);
+		verger.add(conteneurPrune, 1, 1);
+		verger.add(conteneurPoirier, 2, 1);
+		verger.add(conteneurCerisier, 3, 1);
 		//root.add(vueCerise, 0, 1);//
+		root.getChildren().add(backgrounds);
+		root.getChildren().add(verger);
 		Scene scene = new Scene(root, 1600, 900);
 		primaryStage.setScene(scene);
 		primaryStage.show();
