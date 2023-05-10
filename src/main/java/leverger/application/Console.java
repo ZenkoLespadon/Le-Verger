@@ -2,7 +2,9 @@ package leverger.application;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -66,21 +68,33 @@ public class Console extends Application {
 		backgrounds.setFitHeight(900);
 		
 		Dé dé = new Dé();
+		int[] tour = { 1 };
 
 		VueDé vueDé = new VueDé(dé, Color.BLACK);
-		vueDé.paneDé.setOnMouseClicked(event -> {
-			Face faceTiree = dé.lancerDé();
-			vueDé.cercle.setFill(faceTiree.couleur); // Changement de la couleur du cercle
+		Label labelTour = new Label("Tour : " + tour[0]);
+		labelTour.setLayoutX(20);
+		labelTour.setLayoutY(20);
 
-			
+		vueDé.paneDé.setOnMouseClicked(event -> {
+		    Face faceTiree = dé.lancerDé();
+		    vueDé.cercle.setFill(faceTiree.couleur);
+		    tour[0]++; // Incrémentez la valeur de tour
+		    labelTour.setText("Tour : " + tour[0]); // Mettre à jour le label avec la nouvelle valeur de tour
 		});
 		
+		StackPane Compteur = new StackPane();
+		Compteur.setPadding(new Insets(450,0,0,320));
+		Compteur.getChildren().add(labelTour); 
+
 		
 		
-		verger.add(conteneurPommier, 0, 1);
-		verger.add(conteneurPrune, 1, 1);
-		verger.add(conteneurPoirier, 2, 1);
-		verger.add(conteneurCerisier, 3, 1);
+		
+		verger.add(conteneurPommier, 0, 0);
+		verger.add(conteneurPrune, 1, 0);
+		verger.add(conteneurPoirier, 2, 0);
+		verger.add(conteneurCerisier, 3, 0);
+		verger.add(Compteur, 3, 1);
+		
 		//root.add(vueCerise, 0, 1);//
 		root.getChildren().add(backgrounds);
 		root.getChildren().add(verger);
