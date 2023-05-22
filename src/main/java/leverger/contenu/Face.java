@@ -3,12 +3,14 @@ package leverger.contenu;
 import javafx.scene.paint.Color;
 
 public enum Face {
-	ROUGE(Color.RED),JAUNE(Color.YELLOW),BLEUE(Color.BLUE),VERTE(Color.GREEN);
+	ROUGE(Color.RED, "Rouge"),JAUNE(Color.YELLOW, "Jaune"),BLEUE(Color.BLUE, "Bleue"),VERTE(Color.GREEN, "Verte");
 
 	public final Color couleur;
+	public final String nom;
 
-	Face(Color couleur) {
+	Face(Color couleur, String nom) {
 		this.couleur = couleur;
+		this.nom = nom;
 	}
 
 	public Color getCouleur() {
