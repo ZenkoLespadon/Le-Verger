@@ -10,7 +10,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -20,7 +19,9 @@ import leverger.contenu.Arbre;
 import leverger.contenu.Dé;
 import leverger.contenu.Face;
 import leverger.contenu.Fruit;
+import leverger.contenu.Panier;
 import leverger.contenu.VueDé;
+import leverger.contenu.VuePanier;
 
 public class Console extends Application {
 	
@@ -35,11 +36,35 @@ public class Console extends Application {
 		Arbre prunier = new Arbre(Fruit.PRUNE);
 		Arbre pommier = new Arbre(Fruit.POMME);
 		
+		Panier panierCerises = new Panier();
+		Panier panierPoires = new Panier();
+		Panier panierPrunes = new Panier();
+		Panier panierPommes = new Panier();
+		
+		VuePanier vuePanierCerises = new VuePanier(panierCerises);
+		
+		VuePanier vuePanierPoires = new VuePanier(panierPoires);
+		
+		VuePanier vuePanierPrunes = new VuePanier(panierPrunes);
+		
+		VuePanier vuePanierPommes = new VuePanier(panierPommes);
+		
+		
+		verger.add(vuePanierCerises.panePanier, 0, 1);
+		verger.add(vuePanierPoires.panePanier, 1, 1);
+		verger.add(vuePanierPrunes.panePanier, 2, 1);
+		verger.add(vuePanierPommes.panePanier, 3, 1);
+		
+		
+		
+		
+		
 		int[] nbFruits = {10, 10, 10, 10};
 		int[] tour = {1};
 		
 		Dé dé = new Dé();		
 		VueDé vueDé = new VueDé(dé, Color.BLACK);
+		vueDé.paneDé.setPadding(new Insets(0, 0, 50, 0));
 
 		
 		StackPane conteneurCerisier = new StackPane();

@@ -10,11 +10,11 @@ public class Arbre  {
 	public Image image;
 	
 	public Arbre(Fruit fruit) {
-		fruits = new ArrayList<Fruit>();
+		this.fruits = new ArrayList<Fruit>();
 		int i;
 		for (i=0; i<10; i++) {
 			fruits.add(fruit);
 		}
-		image = new Image("file:img/Arbre.png");
+		this.image = new Image("file:img/Arbre.png");
 	}
 }
