@@ -1,5 +1,6 @@
 package leverger.application;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import javafx.animation.KeyFrame;
@@ -41,19 +42,23 @@ public class Console extends Application {
 		Panier panierPrunes = new Panier();
 		Panier panierPommes = new Panier();
 		
-		VuePanier vuePanierCerises = new VuePanier(panierCerises);
-		
-		VuePanier vuePanierPoires = new VuePanier(panierPoires);
-		
-		VuePanier vuePanierPrunes = new VuePanier(panierPrunes);
-		
-		VuePanier vuePanierPommes = new VuePanier(panierPommes);
+
+		StackPane PanePanierCerises = new StackPane();
+		StackPane PanePanierPoires = new StackPane();
+		StackPane PanePanierPrunes = new StackPane();
+		StackPane PanePanierPommes = new StackPane();
 		
 		
-		verger.add(vuePanierCerises.panePanier, 0, 1);
-		verger.add(vuePanierPoires.panePanier, 1, 1);
-		verger.add(vuePanierPrunes.panePanier, 2, 1);
-		verger.add(vuePanierPommes.panePanier, 3, 1);
+		
+		vuePanier(PanePanierCerises, panierCerises);
+		vuePanier(PanePanierPoires, panierPoires);
+		vuePanier(PanePanierPrunes, panierPrunes);
+		vuePanier(PanePanierPommes, panierPommes);
+		
+		verger.add(PanePanierCerises, 0, 1);
+		verger.add(PanePanierPoires, 1, 1);
+		verger.add(PanePanierPrunes, 2, 1);
+		verger.add(PanePanierPommes, 3, 1);
 		
 		
 		
@@ -102,7 +107,9 @@ public class Console extends Application {
 			        	if (nbFruits[0] > 0) {
 			        		nbFruits[0]--;
 			        		vueArbre(conteneurCerisier, cerisier, nbFruits[0]);
-			        		vueFruits(verger, 0, cerisier.fruits.get(0).image, 10 - nbFruits[0]);
+			        		panierCerises.fruits.add(Fruit.CERISE);
+			        		vuePanier(PanePanierCerises, panierCerises);
+			        		//vueFruits(verger, 0, cerisier.fruits.get(0).image, 10 - nbFruits[0]);
 				    		if (Arrays.equals(nbFruits, nbFruitsVide)) {
 				    			messageVictoire(root, tour, vueDé, labelTour);
 				    		}
@@ -112,7 +119,10 @@ public class Console extends Application {
 			        	if (nbFruits[1] > 0) {
 			        		nbFruits[1]--;
 			        		vueArbre(conteneurPoirier, poirier, nbFruits[1]);
-			        		vueFruits(verger, 1, poirier.fruits.get(0).image, 10 - nbFruits[1]);
+			        		//vueFruits(verger, 1, poirier.fruits.get(0).image, 10 - nbFruits[1]);
+			        		panierPoires.fruits.add(Fruit.POIRE);
+			        		vuePanier(PanePanierPoires, panierPoires);
+			        		
 				    		if (Arrays.equals(nbFruits, nbFruitsVide)) {
 				    			messageVictoire(root, tour, vueDé, labelTour);
 				    		}
@@ -122,7 +132,9 @@ public class Console extends Application {
 			        	if (nbFruits[2] > 0) {
 			        		nbFruits[2]--;
 			        		vueArbre(conteneurPrunier, prunier, nbFruits[2]);
-			        		vueFruits(verger, 2, prunier.fruits.get(0).image, 10 - nbFruits[2]);
+			        		//vueFruits(verger, 2, prunier.fruits.get(0).image, 10 - nbFruits[2]);
+			        		panierPrunes.fruits.add(Fruit.PRUNE);
+			        		vuePanier(PanePanierPrunes, panierPrunes);
 				    		if (Arrays.equals(nbFruits, nbFruitsVide)) {
 				    			messageVictoire(root, tour, vueDé, labelTour);
 				    		}
@@ -132,7 +144,9 @@ public class Console extends Application {
 			        	if (nbFruits[3] > 0) {
 			        		nbFruits[3]--;
 			        		vueArbre(conteneurPommier, pommier, nbFruits[3]);
-			        		vueFruits(verger, 3, pommier.fruits.get(0).image, 10 - nbFruits[3]);
+			        		//vueFruits(verger, 3, pommier.fruits.get(0).image, 10 - nbFruits[3]);
+			        		panierPommes.fruits.add(Fruit.POMME);
+			        		vuePanier(PanePanierPommes, panierPommes);
 				    		if (Arrays.equals(nbFruits, nbFruitsVide)) {
 				    			messageVictoire(root, tour, vueDé, labelTour);
 				    		}
@@ -235,6 +249,58 @@ public class Console extends Application {
 
 		verger.add(mesFruits, nbArbre, 1);
 	}
+	
+	public void vuePanier(StackPane panePanier, Panier panier){
+		
+        ImageView vueHautDuPanier = new ImageView(panier.haut);
+        vueHautDuPanier.setFitWidth(375);
+        vueHautDuPanier.setFitHeight(400);
+
+        ImageView vueBasDuPanier = new ImageView(panier.bas);
+        vueBasDuPanier.setFitWidth(375);
+        vueBasDuPanier.setFitHeight(400);
+        
+        
+        panePanier.getChildren().add(vueHautDuPanier);
+        
+        ajouterFruit(panePanier, panier.fruits);
+        panePanier.getChildren().add(vueBasDuPanier);
+        
+    }
+    
+    public void ajouterFruit(StackPane panePanier, ArrayList<Fruit> fruits){
+    	int nbFruit = fruits.size();
+    	GridPane gridFruits1 = new GridPane();
+    	GridPane gridFruits2 = new GridPane();
+    	
+    	int k = 0;
+            
+    	for (int i = 0; i < 5; i++) {
+    		k++;
+    		if (k > nbFruit) {
+    			break;
+    		}
+    		ImageView vueFruit = new ImageView(fruits.get(0).image);
+            vueFruit.setFitWidth(47);
+            vueFruit.setFitHeight(47);
+    		gridFruits1.add(vueFruit, i, 0);
+        }
+    	gridFruits1.setPadding(new Insets(170, 0, 0, 80));
+    	
+    	for (int j = 0; j < 5; j++) {
+    		k++;
+    		if (k > nbFruit) {
+    			break;
+    		}
+    		ImageView vueFruit = new ImageView(fruits.get(0).image);
+            vueFruit.setFitWidth(47);
+            vueFruit.setFitHeight(47);
+    		gridFruits2.add(vueFruit, j, 0);
+        }
+    	gridFruits2.setPadding(new Insets(170, 0, 0, 105));
+    	panePanier.getChildren().add(gridFruits1);
+    	panePanier.getChildren().add(gridFruits2);
+    }
 
 
     public static void main(String[] args) {

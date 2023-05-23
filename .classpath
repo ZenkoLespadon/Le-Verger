@@ -24,15 +24,5 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
-	<classpathentry kind="lib" path="C:/Users/alexh/.m2/repository/org/openjfx/javafx-controls/11/javafx-controls-11-win.jar" sourcepath="C:/Users/alexh/.m2/repository/org/openjfx/javafx-controls/11/javafx-controls-11-sources.jar">
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-			<attribute name="maven.groupId" value="org.openjfx"/>
-			<attribute name="maven.artifactId" value="javafx-controls"/>
-			<attribute name="maven.version" value="11"/>
-			<attribute name="maven.classifier" value="win"/>
-			<attribute name="maven.scope" value="compile"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
