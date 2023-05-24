@@ -1,9 +1,10 @@
-package leverger.contenu;
+package leverger.vue;
 
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
+import leverger.contenu.Dé;
 
 public class VueDé {
 
@@ -39,5 +40,7 @@ public class VueDé {
         triangle.setFill(Color.WHITE);
         return triangle;
 	}
-	//CREER UN SETTER DE PANEDE POUR CHANGER LA COULEUR DU CERCLE 
+	//TODO CREER UN SETTER DE PANEDE POUR CHANGER LA COULEUR DU CERCLE 
+	
+	
 }	

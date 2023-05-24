@@ -16,5 +16,9 @@ public class Panier {
         this.haut = new Image("file:img/HautDuPanier.png");
         this.bas = new Image("file:img/BasDuPanier.png");
         }
+    
+    public void ajouterFruit(Fruit fruit) {
+    	this.fruits.add(fruit);
+    }
 
-    } 
+} 

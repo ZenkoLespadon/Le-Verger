@@ -17,4 +17,14 @@ public class Arbre  {
 		}
 		this.image = new Image("file:img/Arbre.png");
 	}
+	
+	public Fruit getFruit() {
+		return this.fruits.get(0);
+	}
+	
+	public int getNbFruit() {
+		return this.fruits.size();
+	}
+	
+	
 }
