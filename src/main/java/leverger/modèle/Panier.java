@@ -1,4 +1,4 @@
-package leverger.contenu;
+package leverger.modèle;
 
 import java.util.ArrayList;
 import java.util.List;

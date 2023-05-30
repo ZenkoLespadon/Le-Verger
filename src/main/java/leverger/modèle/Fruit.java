@@ -1,4 +1,4 @@
-package leverger.contenu;
+package leverger.modèle;
 
 import javafx.scene.image.Image;
 

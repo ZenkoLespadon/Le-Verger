@@ -1,10 +1,11 @@
 package leverger.vue;
 
+import javafx.geometry.Insets;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
-import leverger.contenu.Dé;
+import leverger.modèle.Dé;
 
 public class VueDé {
 
@@ -20,6 +21,7 @@ public class VueDé {
 		this.triangle = generationTriangle();
         this.paneDé = new StackPane();
         this.paneDé.getChildren().addAll(triangle, cercle);
+        this.paneDé.setPadding(new Insets(0, 0, 50, 0));
 	}
 	
 	public Circle generationCercle(Color couleur) {

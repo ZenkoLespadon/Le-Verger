@@ -1,12 +1,14 @@
-package leverger.contenu;
+package leverger.modèle;
 
 import java.util.ArrayList;
-
 import java.util.List;
+
+import javafx.scene.control.Label;
 
 
 public class Dé {
 	public List<Face> faces = new ArrayList<Face>();
+	public Label labelTest;
 
 	public Dé() {
 		faces = new ArrayList<Face>();
@@ -14,6 +16,8 @@ public class Dé {
 		faces.add(Face.JAUNE);
 		faces.add(Face.BLEUE);
 		faces.add(Face.VERTE);
+		this.labelTest = new Label("Test");
+		
 	}
 	
 	 public Face lancerDé(){

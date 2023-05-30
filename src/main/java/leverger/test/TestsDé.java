@@ -7,13 +7,13 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import leverger.contenu.Dé;
-import leverger.contenu.Face;
+import leverger.modèle.Dé;
+import leverger.modèle.Face;
 
 class TestsDé {
 
 	@Test
-	void TestFacesDé() {
+	void testFacesDé() {
 		Dé dé = new Dé();
 		List<Face> faces = new ArrayList<Face>();
 		faces.add(Face.ROUGE);
@@ -24,7 +24,9 @@ class TestsDé {
 		
 			}
 	 @Test
-	    void testLancerDé() {
-	        Dé dé = new Dé();
+	 void testLancerDé() {
+		 Dé dé = new Dé();
+	     //TODO
 	    }
 }
+

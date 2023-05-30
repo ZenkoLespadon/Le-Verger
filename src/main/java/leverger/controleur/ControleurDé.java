@@ -2,30 +2,34 @@ package leverger.controleur;
 
 import java.util.Arrays;
 
+import java.util.List;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
-import leverger.contenu.Face;
-import leverger.contenu.Fruit;
-import leverger.contenu.Tour;
-import leverger.vue.LesVuesDesFruits;
+import leverger.modèle.Face;
+import leverger.modèle.Fruit;
+import leverger.vue.VueTour;
+import leverger.vue.VueArbre;
 import leverger.vue.VueDé;
-import leverger.vue.VuesDesFruits;
+import leverger.vue.VuePanier;
 
 public class ControleurDé {
 	public VueDé vueDé;
-	public Tour tour;
-	public int[] nbFruits;
+	public VueTour tour;
+	int[] nbFruits = {10, 10, 10, 10};
 	public StackPane root;
-	public LesVuesDesFruits lesvuesdesfruits;
+	public List<VueArbre> vuesArbre;
+	public List<VuePanier> vuesPanier;
 	
-	public ControleurDé(VueDé vueDé, Tour tour, LesVuesDesFruits lesvuesdesfruits){
+	public ControleurDé(StackPane root, VueDé vueDé, VueTour tour, List<VueArbre> vuesArbre, List<VuePanier> vuesPanier){
 		this.vueDé = vueDé;
 		this.tour = tour;
 		this.root = root;
-		this.lesvuesdesfruits = lesvuesdesfruits;
+		this.vuesArbre = vuesArbre;
+		this.vuesPanier = vuesPanier;
 	}
 	
 	public void initialiserEventHandler() {
@@ -39,7 +43,7 @@ public class ControleurDé {
 			        case "Rouge": 
 			        	if (nbFruits[0] > 0) {
 			        		nbFruits[0]--;
-			        		bougerFruits(lesvuesdesfruits.cerises);
+			        		bougerFruits(vuesArbre.get(0), vuesPanier.get(0));
 				    		if (Arrays.equals(nbFruits, nbFruitsVide)) {
 				    			messageVictoire(root, tour, vueDé);
 				    		}
@@ -48,7 +52,7 @@ public class ControleurDé {
 			        case "Jaune": 
 			        	if (nbFruits[1] > 0) {
 			        		nbFruits[1]--;
-			        		bougerFruits(lesvuesdesfruits.poires);
+			        		bougerFruits(vuesArbre.get(1), vuesPanier.get(1));
 				    		if (Arrays.equals(nbFruits, nbFruitsVide)) {
 				    			messageVictoire(root, tour, vueDé);
 				    		}
@@ -57,16 +61,16 @@ public class ControleurDé {
 			        case "Bleue": 
 			        	if (nbFruits[2] > 0) {
 			        		nbFruits[2]--;
-			        		bougerFruits(lesvuesdesfruits.prunes);
+			        		bougerFruits(vuesArbre.get(2), vuesPanier.get(2));
 				    		if (Arrays.equals(nbFruits, nbFruitsVide)) {
 				    			messageVictoire(root, tour, vueDé);
 				    		}
 			            break;
 			        	}
-			        case "Verte": 
+			        default: 
 			        	if (nbFruits[3] > 0) {
 			        		nbFruits[3]--;
-			        		bougerFruits(lesvuesdesfruits.pommes);
+			        		bougerFruits(vuesArbre.get(3), vuesPanier.get(3));
 				    		if (Arrays.equals(nbFruits, nbFruitsVide)) {
 				    			messageVictoire(root, tour, vueDé);
 				    		}
@@ -80,23 +84,22 @@ public class ControleurDé {
 		});
 	}
 	
-	public void bougerFruits(VuesDesFruits vuesdesfruits) {
-		int nbFruit = vuesdesfruits.vueArbre.arbre.getNbFruit();
-		Fruit fruit = vuesdesfruits.vueArbre.arbre.getFruit();
-		vuesdesfruits.vueArbre.genererVue(nbFruit);
-		vuesdesfruits.vuePanier.panier.ajouterFruit(fruit);
-		vuesdesfruits.vuePanier.genererVue(nbFruit);
+	public void bougerFruits(VueArbre vueArbre, VuePanier vuePanier) {
+		Fruit fruit = vueArbre.arbre.getFruit();
+		vueArbre.arbre.enleverFruit(fruit);
+		vueArbre.genererVue();
+		vuePanier.panier.ajouterFruit(fruit);
+		vuePanier.genererVue();
 	}
 
 
-	public void messageVictoire(StackPane root, Tour tour, VueDé vueDé) {
+	public void messageVictoire(StackPane root, VueTour tour, VueDé vueDé) {
 		StackPane paneLabel = new StackPane();
-		Label label = new Label("Vous avez gagné en " + tour.getCompteur() + " tours");
+		Label compteur = new Label("Vous avez gagné en " + tour.getCompteur() + " tours");
 		vueDé.paneDé.setVisible(false);
-		tour.cacherLabel();
-		label.setStyle("-fx-font-size: 48px; -fx-font-weight: bold; -fx-text-fill: black;"); 
-		paneLabel.getChildren().add(label);
-		root.getChildren().add(paneLabel);
+		tour.cacherCompteur();
+		compteur.setStyle("-fx-font-size: 48px; -fx-font-weight: bold; -fx-text-fill: black;"); 
+		root.getChildren().add(compteur);
 	}
 	
 	

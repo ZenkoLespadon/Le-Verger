@@ -4,7 +4,7 @@ import javafx.geometry.Insets;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
-import leverger.contenu.Arbre;
+import leverger.modèle.Arbre;
 
 public class VueArbre{
 	
@@ -14,11 +14,12 @@ public class VueArbre{
     public VueArbre(Arbre arbre) {
     	this.arbre = arbre;
         this.conteneur = new StackPane();
-        genererVue(10);
+        genererVue();
     }
 	
-	public void genererVue(int nbFruit) {
+	public void genererVue() {
 		
+		int nbFruit = this.arbre.getNbFruit();
 		ImageView vueArbre = new ImageView(this.arbre.image);
 		vueArbre.setFitWidth(400);
 		vueArbre.setFitHeight(425);
@@ -38,7 +39,7 @@ public class VueArbre{
 				k++;
 				j=0;
 			}
-			ImageView vueFruit = new ImageView(this.arbre.fruits.get(0).image);
+			ImageView vueFruit = new ImageView(arbre.getFruit().image);
 			vueFruit.setFitWidth(50);
 			vueFruit.setFitHeight(50);
 			mesFruits.add(vueFruit, j, k);

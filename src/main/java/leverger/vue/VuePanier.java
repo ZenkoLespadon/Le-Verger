@@ -6,8 +6,8 @@ import javafx.geometry.Insets;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
-import leverger.contenu.Fruit;
-import leverger.contenu.Panier;
+import leverger.modèle.Fruit;
+import leverger.modèle.Panier;
 
 public class VuePanier {
 	
@@ -17,10 +17,14 @@ public class VuePanier {
     public VuePanier(Panier panier) {
     	this.panier = panier;
         this.conteneur = new StackPane();
-        genererVue(10);
+        genererVue();
     }
     
-    public void genererVue(int nbFruit) {
+    public StackPane getConteneur() {
+    	return this.conteneur;
+    }
+    
+    public void genererVue() {
 		
     	ImageView vueHautDuPanier = new ImageView(panier.haut);
     	vueHautDuPanier.setFitWidth(375);
@@ -65,12 +69,9 @@ public class VuePanier {
         }
     	gridFruits1.setPadding(new Insets(170, 0, 0, 80));
     	
-    	for (int j = 0; j < 5; j++) {
+    	for (int j = 0; j < 5 && k < nbFruit; j++) {
     		k++;
-    		if (k > nbFruit) {
-    			break;
-    		}
-    		ImageView vueFruit = new ImageView(fruits.get(0).image);
+    		ImageView vueFruit = new ImageView(fruits.get(10-k).image);
             vueFruit.setFitWidth(47);
             vueFruit.setFitHeight(47);
     		gridFruits2.add(vueFruit, j, 0);
