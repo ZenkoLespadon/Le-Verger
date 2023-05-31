@@ -1,9 +1,8 @@
-package leverger.modèle;
+package leverger.modele;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javafx.scene.control.Label;
+import java.util.Random;
 
 
 public class Dé {
@@ -15,13 +14,13 @@ public class Dé {
 		faces.add(Face.JAUNE);
 		faces.add(Face.BLEUE);
 		faces.add(Face.VERTE);
+		faces.add(Face.NOIRE);
 		
 	}
 	
 	 public Face lancerDé(){
-	        int nbMin = 0;
-	        int nbMax = this.faces.size();
-	        int nbAleatoire = nbMin + (int)(Math.random() * ((nbMax - nbMin)));
+	        Random random = new Random();
+	        int nbAleatoire = random.nextInt(this.faces.size());
 	        return faces.get(nbAleatoire);
 	        
 	    }

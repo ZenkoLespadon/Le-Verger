@@ -5,7 +5,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
-import leverger.modèle.Dé;
+import leverger.modele.Dé;
 
 public class VueDé {
 

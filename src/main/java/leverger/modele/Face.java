@@ -1,9 +1,9 @@
-package leverger.modèle;
+package leverger.modele;
 
 import javafx.scene.paint.Color;
 
 public enum Face {
-	ROUGE(Color.RED, "Rouge"),JAUNE(Color.YELLOW, "Jaune"),BLEUE(Color.BLUE, "Bleue"),VERTE(Color.GREEN, "Verte");
+	ROUGE(Color.RED, "Rouge"),JAUNE(Color.YELLOW, "Jaune"),BLEUE(Color.BLUE, "Bleue"),VERTE(Color.GREEN, "Verte"), NOIRE(Color.BLACK, "Noire");
 
 	public final Color couleur;
 	public final String nom;

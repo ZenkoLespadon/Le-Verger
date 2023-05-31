@@ -5,7 +5,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
-import leverger.modèle.Arbre;
+import leverger.modele.Arbre;
 
 public class VueArbre{
 	

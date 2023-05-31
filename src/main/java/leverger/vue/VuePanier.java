@@ -7,8 +7,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
-import leverger.modèle.Fruit;
-import leverger.modèle.Panier;
+import leverger.modele.Fruit;
+import leverger.modele.Panier;
 
 public class VuePanier {
 	

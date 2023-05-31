@@ -1,7 +1,6 @@
 package leverger.controleur;
 
 import java.util.Arrays;
-
 import java.util.List;
 
 import javafx.animation.KeyFrame;
@@ -9,27 +8,30 @@ import javafx.animation.Timeline;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
-import leverger.modèle.Face;
-import leverger.modèle.Fruit;
-import leverger.vue.VueTour;
+import leverger.modele.Face;
+import leverger.modele.Fruit;
 import leverger.vue.VueArbre;
 import leverger.vue.VueDé;
 import leverger.vue.VuePanier;
+import leverger.vue.VuePuzzle;
+import leverger.vue.VueTour;
 
 public class ControleurDé {
 	public VueDé vueDé;
 	public VueTour vueTour;
-	int[] nbFruits = {10, 10, 10, 10};
+	int[] compteurFruitEtPiece = {10, 10, 10, 10, 0};
 	public StackPane root;
 	public List<VueArbre> vuesArbre;
 	public List<VuePanier> vuesPanier;
+	public VuePuzzle vuePuzzle;
 	
-	public ControleurDé(StackPane root, VueDé vueDé, VueTour vueTour, List<VueArbre> vuesArbre, List<VuePanier> vuesPanier){
+	public ControleurDé(StackPane root, VueDé vueDé, VueTour vueTour, List<VueArbre> vuesArbre, List<VuePanier> vuesPanier, VuePuzzle vuePuzzle){
 		this.vueDé = vueDé;
 		this.vueTour = vueTour;
 		this.root = root;
 		this.vuesArbre = vuesArbre;
 		this.vuesPanier = vuesPanier;
+		this.vuePuzzle = vuePuzzle;
 	}
 	
 	public void initialiserEventHandler() {
@@ -41,41 +43,49 @@ public class ControleurDé {
 		        vueTour.incrementerTour();
 			    switch(faceTiree.nom) {
 			        case "Rouge": 
-			        	if (nbFruits[0] > 0) {
-			        		nbFruits[0]--;
+			        	if (compteurFruitEtPiece[0] > 0) {
+			        		compteurFruitEtPiece[0]--;
 			        		bougerFruits(vuesArbre.get(0), vuesPanier.get(0));
-				    		if (Arrays.equals(nbFruits, nbFruitsVide)) {
-				    			messageVictoire(root, vueTour, vueDé);
+				    		if (Arrays.equals(compteurFruitEtPiece, nbFruitsVide)) {
+				    			messageVictoire("Vous avez gagné en ", root, vueTour, vueDé);
 				    		}
 			        	}
 			            break;
 			        case "Jaune": 
-			        	if (nbFruits[1] > 0) {
-			        		nbFruits[1]--;
+			        	if (compteurFruitEtPiece[1] > 0) {
+			        		compteurFruitEtPiece[1]--;
 			        		bougerFruits(vuesArbre.get(1), vuesPanier.get(1));
-				    		if (Arrays.equals(nbFruits, nbFruitsVide)) {
-				    			messageVictoire(root, vueTour, vueDé);
+				    		if (Arrays.equals(compteurFruitEtPiece, nbFruitsVide)) {
+				    			messageVictoire("Vous avez gagné en ", root, vueTour, vueDé);
 				    		}
 			            break;
 			        	}
 			        case "Bleue": 
-			        	if (nbFruits[2] > 0) {
-			        		nbFruits[2]--;
+			        	if (compteurFruitEtPiece[2] > 0) {
+			        		compteurFruitEtPiece[2]--;
 			        		bougerFruits(vuesArbre.get(2), vuesPanier.get(2));
-				    		if (Arrays.equals(nbFruits, nbFruitsVide)) {
-				    			messageVictoire(root, vueTour, vueDé);
+				    		if (Arrays.equals(compteurFruitEtPiece, nbFruitsVide)) {
+				    			messageVictoire("Vous avez gagné en ", root, vueTour, vueDé);
 				    		}
 			            break;
 			        	}
-			        default: 
-			        	if (nbFruits[3] > 0) {
-			        		nbFruits[3]--;
+			        case "Verte": 
+			        	if (compteurFruitEtPiece[3] > 0) {
+			        		compteurFruitEtPiece[3]--;
 			        		bougerFruits(vuesArbre.get(3), vuesPanier.get(3));
-				    		if (Arrays.equals(nbFruits, nbFruitsVide)) {
-				    			messageVictoire(root, vueTour, vueDé);
+				    		if (Arrays.equals(compteurFruitEtPiece, nbFruitsVide)) {
+				    			messageVictoire("Vous avez gagné en ", root, vueTour, vueDé);
 				    		}
-			            break;
+				    	break;
 			        	}
+				    default :
+				    	compteurFruitEtPiece[4]++;
+				    	vuePuzzle.getPuzzle().Piocherpiece();
+				    	vuePuzzle.genererVue();
+			    		if (compteurFruitEtPiece[4] == 9) {
+			    			messageVictoire("Le corbeau a gagné en ", root, vueTour, vueDé);
+			    		}
+				    	break;
 			    }
 			    
 			}));
@@ -93,9 +103,9 @@ public class ControleurDé {
 	}
 
 
-	public void messageVictoire(StackPane root, VueTour vueTour, VueDé vueDé) {
+	public void messageVictoire(String debutLabel, StackPane root, VueTour vueTour, VueDé vueDé) {
 		StackPane paneLabel = new StackPane();
-		Label compteur = new Label("Vous avez gagné en " + vueTour.getCompteur() + " tours");
+		Label compteur = new Label(debutLabel + vueTour.getCompteur() + " tours");
 		vueDé.paneDé.setVisible(false);
 		vueTour.cacherCompteur();
 		compteur.setStyle("-fx-font-size: 48px; -fx-font-weight: bold; -fx-text-fill: black;"); 
