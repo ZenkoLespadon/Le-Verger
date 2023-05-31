@@ -1,7 +1,6 @@
 package leverger.application;
 
 import java.util.ArrayList;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -15,21 +14,28 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import leverger.controleur.ControleurDé;
+import leverger.modele.Tour;
 import leverger.modèle.Arbre;
 import leverger.modèle.Dé;
 import leverger.modèle.Fruit;
 import leverger.modèle.Panier;
-import leverger.vue.VueTour;
 import leverger.vue.VueArbre;
 import leverger.vue.VueDé;
+import leverger.vue.VueFruit;
 import leverger.vue.VuePanier;
+import leverger.vue.VueTour;
 
-public class Console extends Application {
+public class Main extends Application {
 	
 	public void start(Stage primaryStage) {
 
 		StackPane root = new StackPane();
 		GridPane verger = new GridPane();
+		
+		VueFruit vueCerise = new VueFruit(Fruit.CERISE, new Image("file:img/Cerise.png"));
+		VueFruit vuePoire = new VueFruit(Fruit.POIRE, new Image("file:img/Poire.png"));
+		VueFruit vuePrune = new VueFruit(Fruit.PRUNE, new Image("file:img/Prune.png"));
+		VueFruit vuePomme = new VueFruit(Fruit.POMME, new Image("file:img/Pomme.png"));
 		
 		
 		
@@ -43,10 +49,10 @@ public class Console extends Application {
 		Panier panierPrunes = new Panier();
 		Panier panierPommes = new Panier();
 		
-		VuePanier vuePanierCerises = new VuePanier(panierCerises);
-		VuePanier vuePanierPoires = new VuePanier(panierPoires);
-		VuePanier vuePanierPrunes = new VuePanier(panierPrunes);
-		VuePanier vuePanierPommes = new VuePanier(panierPommes);
+		VuePanier vuePanierCerises = new VuePanier(panierCerises, vueCerise);
+		VuePanier vuePanierPoires = new VuePanier(panierPoires, vuePoire);
+		VuePanier vuePanierPrunes = new VuePanier(panierPrunes, vuePrune);
+		VuePanier vuePanierPommes = new VuePanier(panierPommes, vuePomme);
 	
 		
 		verger.add(vuePanierCerises.getConteneur(), 0, 1);
@@ -55,10 +61,10 @@ public class Console extends Application {
 		verger.add(vuePanierPommes.getConteneur(), 3, 1);
 
 		
-		VueArbre vueCerisier = new VueArbre(cerisier);
-		VueArbre vuePoirier = new VueArbre(poirier);
-		VueArbre vuePrunier = new VueArbre(prunier);
-		VueArbre vuePommier = new VueArbre(pommier);
+		VueArbre vueCerisier = new VueArbre(cerisier, vueCerise);
+		VueArbre vuePoirier = new VueArbre(poirier, vuePoire);
+		VueArbre vuePrunier = new VueArbre(prunier, vuePrune);
+		VueArbre vuePommier = new VueArbre(pommier, vuePomme);
 		
 
 		ImageView backgrounds = new ImageView(new Image("file:img/Background.png"));
@@ -75,22 +81,23 @@ public class Console extends Application {
 		Dé dé = new Dé();		
 		VueDé vueDé = new VueDé(dé, Color.BLACK);
 		
-		VueTour tour = new VueTour();
+		Tour tour = new Tour();
+		VueTour vueTour = new VueTour(tour);
 		
-		ControleurDé controleurdé = new ControleurDé(root, vueDé, tour, vuesArbre, vuesPanier);
+		ControleurDé controleurdé = new ControleurDé(root, vueDé, vueTour, vuesArbre, vuesPanier);
 		controleurdé.initialiserEventHandler();
 		
-		verger.add(vueCerisier.conteneur, 0, 0);
-		verger.add(vuePoirier.conteneur, 1, 0);
-		verger.add(vuePrunier.conteneur, 2, 0);
-		verger.add(vuePommier.conteneur, 3, 0);
+		verger.add(vueCerisier.getConteneur(), 0, 0);
+		verger.add(vuePoirier.getConteneur(), 1, 0);
+		verger.add(vuePrunier.getConteneur(), 2, 0);
+		verger.add(vuePommier.getConteneur(), 3, 0);
 		
 		root.getChildren().add(backgrounds);
 		root.getChildren().add(verger);
-		root.getChildren().add(vueDé.paneDé);
-		root.getChildren().add(tour.label);
+		root.getChildren().add(vueDé.getPaneDé());
+		root.getChildren().add(vueTour.getLabel());
 		
-		root.setMargin(tour.getLabel(), new Insets(800, 0, 0, 1400));
+		root.setMargin(vueTour.getLabel(), new Insets(800, 0, 0, 1400));
 		
 
 		

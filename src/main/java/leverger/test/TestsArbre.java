@@ -14,19 +14,9 @@ import leverger.modèle.Fruit;
 
 
 class TestsArbre {
-	
-	@Test
-	void assertVrai() {
-		Assertions.assertTrue(true);
-	}
-	
-	@Test
-	void creerFruit() {
-		Fruit prune = Fruit.PRUNE;
-	}
 
 	@Test
-	void lePommierDoitAvoir10Fruits() {
+	void lePommierDoitAvoir10Pommes() {
 		Fruit pomme = Fruit.POMME;
 		Arbre pommier = new Arbre(pomme);
 		List<Fruit> pommes = new ArrayList<Fruit>();
@@ -38,7 +28,7 @@ class TestsArbre {
 	}
 	
 	@Test
-	void leFruitDoitEtreRetirerdeLaListe() {
+	void leFruitDoitEtreRetire() {
 		Arbre cerisier = new Arbre(Fruit.CERISE);
 		List<Fruit> cerises = new ArrayList<Fruit>();
 		int i;
@@ -47,7 +37,20 @@ class TestsArbre {
 		}
 		cerisier.enleverFruit(Fruit.CERISE);
 		assertEquals(cerises, cerisier.fruits);
-		
+	}
+	
+	@Test
+	void QuatreFruitsDoiventEtreRetire() {
+		Arbre cerisier = new Arbre(Fruit.CERISE);
+		List<Fruit> cerises = new ArrayList<Fruit>();
+		int i;
+		for (i=0; i<6; i++) {
+			cerises.add(Fruit.CERISE);
+		}
+		for (i=0; i<4; i++) {
+			cerisier.enleverFruit(Fruit.CERISE);
+		}
+		assertEquals(cerises, cerisier.fruits);
 	}
 	
 }

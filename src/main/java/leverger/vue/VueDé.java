@@ -24,6 +24,9 @@ public class VueDé {
         this.paneDé.setPadding(new Insets(0, 0, 50, 0));
 	}
 	
+	public StackPane getPaneDé() {
+		return this.paneDé;
+	}
 	public Circle generationCercle(Color couleur) {
 		Circle cercle = new Circle(45, couleur);
 		cercle.setTranslateY(30);
@@ -42,7 +45,10 @@ public class VueDé {
         triangle.setFill(Color.WHITE);
         return triangle;
 	}
-	//TODO CREER UN SETTER DE PANEDE POUR CHANGER LA COULEUR DU CERCLE 
+
+	public void setCouleurDuCercle(Color couleur) {
+		this.cercle.setFill(couleur);
+	}
 	
 	
 }	

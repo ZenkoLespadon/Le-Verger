@@ -1,6 +1,7 @@
 package leverger.vue;
 
 import javafx.geometry.Insets;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
@@ -9,29 +10,40 @@ import leverger.modèle.Arbre;
 public class VueArbre{
 	
 	public Arbre arbre;
+	public Image image;
 	public StackPane conteneur;
+	public VueFruit vueFruit;
 
-    public VueArbre(Arbre arbre) {
+    public VueArbre(Arbre arbre, VueFruit vueFruit) {
     	this.arbre = arbre;
+    	this.image = new Image("file:img/Arbre.png");
         this.conteneur = new StackPane();
+        this.vueFruit = vueFruit;
+        
         genererVue();
     }
 	
+    public StackPane getConteneur() {
+    	return this.conteneur;
+    }
 	public void genererVue() {
 		
 		int nbFruit = this.arbre.getNbFruit();
-		ImageView vueArbre = new ImageView(this.arbre.image);
-		vueArbre.setFitWidth(400);
-		vueArbre.setFitHeight(425);
+		
+		ImageView imageview = new ImageView(this.image);
+		imageview.setFitWidth(400);
+		imageview.setFitHeight(425);
 		
 		int i;
 		int j=0;
 		int k=0;
 	
-		this.conteneur.getChildren().add(vueArbre);
+		this.conteneur.getChildren().add(imageview);
 	
 		GridPane mesFruits = new GridPane();
 		mesFruits.setPadding(new Insets (60,0,0,75));
+		
+		
 	
 	
 		for (i = 0; i < nbFruit; i++) {
@@ -39,10 +51,11 @@ public class VueArbre{
 				k++;
 				j=0;
 			}
-			ImageView vueFruit = new ImageView(arbre.getFruit().image);
-			vueFruit.setFitWidth(50);
-			vueFruit.setFitHeight(50);
-			mesFruits.add(vueFruit, j, k);
+			
+			ImageView imageVueFruit = vueFruit.genererVue();
+			imageVueFruit.setFitWidth(50);
+			imageVueFruit.setFitHeight(50);
+			mesFruits.add(imageVueFruit, j, k);
 			j++;
 		}
 

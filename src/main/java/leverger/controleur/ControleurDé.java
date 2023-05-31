@@ -18,15 +18,15 @@ import leverger.vue.VuePanier;
 
 public class ControleurDé {
 	public VueDé vueDé;
-	public VueTour tour;
+	public VueTour vueTour;
 	int[] nbFruits = {10, 10, 10, 10};
 	public StackPane root;
 	public List<VueArbre> vuesArbre;
 	public List<VuePanier> vuesPanier;
 	
-	public ControleurDé(StackPane root, VueDé vueDé, VueTour tour, List<VueArbre> vuesArbre, List<VuePanier> vuesPanier){
+	public ControleurDé(StackPane root, VueDé vueDé, VueTour vueTour, List<VueArbre> vuesArbre, List<VuePanier> vuesPanier){
 		this.vueDé = vueDé;
-		this.tour = tour;
+		this.vueTour = vueTour;
 		this.root = root;
 		this.vuesArbre = vuesArbre;
 		this.vuesPanier = vuesPanier;
@@ -35,17 +35,17 @@ public class ControleurDé {
 	public void initialiserEventHandler() {
 		vueDé.paneDé.setOnMouseClicked(click -> {
 			Face faceTiree = vueDé.dé.lancerDé();
-			vueDé.cercle.setFill(faceTiree.couleur);
+			vueDé.setCouleurDuCercle(faceTiree.couleur);
 			Timeline timeline = new Timeline(new KeyFrame(Duration.millis(250), attente -> {
 		        int[] nbFruitsVide = {0, 0, 0, 0};
-		    	tour.incrementer();
+		        vueTour.incrementerTour();
 			    switch(faceTiree.nom) {
 			        case "Rouge": 
 			        	if (nbFruits[0] > 0) {
 			        		nbFruits[0]--;
 			        		bougerFruits(vuesArbre.get(0), vuesPanier.get(0));
 				    		if (Arrays.equals(nbFruits, nbFruitsVide)) {
-				    			messageVictoire(root, tour, vueDé);
+				    			messageVictoire(root, vueTour, vueDé);
 				    		}
 			        	}
 			            break;
@@ -54,7 +54,7 @@ public class ControleurDé {
 			        		nbFruits[1]--;
 			        		bougerFruits(vuesArbre.get(1), vuesPanier.get(1));
 				    		if (Arrays.equals(nbFruits, nbFruitsVide)) {
-				    			messageVictoire(root, tour, vueDé);
+				    			messageVictoire(root, vueTour, vueDé);
 				    		}
 			            break;
 			        	}
@@ -63,7 +63,7 @@ public class ControleurDé {
 			        		nbFruits[2]--;
 			        		bougerFruits(vuesArbre.get(2), vuesPanier.get(2));
 				    		if (Arrays.equals(nbFruits, nbFruitsVide)) {
-				    			messageVictoire(root, tour, vueDé);
+				    			messageVictoire(root, vueTour, vueDé);
 				    		}
 			            break;
 			        	}
@@ -72,7 +72,7 @@ public class ControleurDé {
 			        		nbFruits[3]--;
 			        		bougerFruits(vuesArbre.get(3), vuesPanier.get(3));
 				    		if (Arrays.equals(nbFruits, nbFruitsVide)) {
-				    			messageVictoire(root, tour, vueDé);
+				    			messageVictoire(root, vueTour, vueDé);
 				    		}
 			            break;
 			        	}
@@ -93,11 +93,11 @@ public class ControleurDé {
 	}
 
 
-	public void messageVictoire(StackPane root, VueTour tour, VueDé vueDé) {
+	public void messageVictoire(StackPane root, VueTour vueTour, VueDé vueDé) {
 		StackPane paneLabel = new StackPane();
-		Label compteur = new Label("Vous avez gagné en " + tour.getCompteur() + " tours");
+		Label compteur = new Label("Vous avez gagné en " + vueTour.getCompteur() + " tours");
 		vueDé.paneDé.setVisible(false);
-		tour.cacherCompteur();
+		vueTour.cacherCompteur();
 		compteur.setStyle("-fx-font-size: 48px; -fx-font-weight: bold; -fx-text-fill: black;"); 
 		root.getChildren().add(compteur);
 	}

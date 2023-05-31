@@ -2,13 +2,10 @@ package leverger.modèle;
 
 import java.util.ArrayList;
 
-import java.util.List;
-
 import javafx.scene.image.Image;
 
 public class Arbre  {
 	public ArrayList<Fruit> fruits;
-	public Image image;
 	
 	public Arbre(Fruit fruit) {
 		this.fruits = new ArrayList<Fruit>();
@@ -16,7 +13,6 @@ public class Arbre  {
 		for (i=0; i<10; i++) {
 			this.fruits.add(fruit);
 		}
-		this.image = new Image("file:img/Arbre.png");
 	}
 	
 	public Fruit getFruit() {
@@ -34,5 +30,5 @@ public class Arbre  {
 	public void enleverFruit(Fruit fruit) {
 		this.fruits.remove(fruit);
 	}
-	
+
 }
