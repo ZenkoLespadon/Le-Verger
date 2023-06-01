@@ -11,7 +11,7 @@ import leverger.modele.Arbre;
 import leverger.modele.Fruit;
 import leverger.modele.Panier;
 
-public class testPanier {
+public class TestsPanier {
 	
 	
 	@Test

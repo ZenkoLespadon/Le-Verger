@@ -22,7 +22,7 @@ public class Puzzle {
 		return this.pieces.get(numero);
 	}
 	
-	public void Piocherpiece() {
+	public void piocherPiece() {
 		int indicePiece;
 		int nbAleatoire = 0;
 		boolean disponible = false;

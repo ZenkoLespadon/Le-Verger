@@ -14,7 +14,7 @@ public class Dé {
 		faces.add(Face.JAUNE);
 		faces.add(Face.BLEUE);
 		faces.add(Face.VERTE);
-		faces.add(Face.NOIRE);
+		faces.add(Face.CORBEAU);
 		
 	}
 	

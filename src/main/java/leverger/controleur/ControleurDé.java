@@ -1,6 +1,5 @@
 package leverger.controleur;
 
-import java.util.Arrays;
 import java.util.List;
 
 import javafx.animation.KeyFrame;
@@ -37,16 +36,15 @@ public class ControleurDé {
 	public void initialiserEventHandler() {
 		vueDé.paneDé.setOnMouseClicked(click -> {
 			Face faceTiree = vueDé.dé.lancerDé();
-			vueDé.setCouleurDuCercle(faceTiree.couleur);
+			vueDé.setFaceDuCercle(faceTiree);
+			vueTour.incrementerTour();
 			Timeline timeline = new Timeline(new KeyFrame(Duration.millis(250), attente -> {
-		        int[] nbFruitsVide = {0, 0, 0, 0};
-		        vueTour.incrementerTour();
 			    switch(faceTiree.nom) {
 			        case "Rouge": 
 			        	if (compteurFruitEtPiece[0] > 0) {
 			        		compteurFruitEtPiece[0]--;
 			        		bougerFruits(vuesArbre.get(0), vuesPanier.get(0));
-				    		if (Arrays.equals(compteurFruitEtPiece, nbFruitsVide)) {
+				    		if (victoireJoueur(compteurFruitEtPiece)) {
 				    			messageVictoire("Vous avez gagné en ", root, vueTour, vueDé);
 				    		}
 			        	}
@@ -55,32 +53,32 @@ public class ControleurDé {
 			        	if (compteurFruitEtPiece[1] > 0) {
 			        		compteurFruitEtPiece[1]--;
 			        		bougerFruits(vuesArbre.get(1), vuesPanier.get(1));
-				    		if (Arrays.equals(compteurFruitEtPiece, nbFruitsVide)) {
+				    		if (victoireJoueur(compteurFruitEtPiece)) {
 				    			messageVictoire("Vous avez gagné en ", root, vueTour, vueDé);
 				    		}
-			            break;
 			        	}
+			        	break;
 			        case "Bleue": 
 			        	if (compteurFruitEtPiece[2] > 0) {
 			        		compteurFruitEtPiece[2]--;
 			        		bougerFruits(vuesArbre.get(2), vuesPanier.get(2));
-				    		if (Arrays.equals(compteurFruitEtPiece, nbFruitsVide)) {
+				    		if (victoireJoueur(compteurFruitEtPiece)) {
 				    			messageVictoire("Vous avez gagné en ", root, vueTour, vueDé);
 				    		}
-			            break;
 			        	}
+			        	break;
 			        case "Verte": 
 			        	if (compteurFruitEtPiece[3] > 0) {
 			        		compteurFruitEtPiece[3]--;
 			        		bougerFruits(vuesArbre.get(3), vuesPanier.get(3));
-				    		if (Arrays.equals(compteurFruitEtPiece, nbFruitsVide)) {
+				    		if (victoireJoueur(compteurFruitEtPiece)) {
 				    			messageVictoire("Vous avez gagné en ", root, vueTour, vueDé);
 				    		}
-				    	break;
 			        	}
+			        	break;
 				    default :
 				    	compteurFruitEtPiece[4]++;
-				    	vuePuzzle.getPuzzle().Piocherpiece();
+				    	vuePuzzle.getPuzzle().piocherPiece();
 				    	vuePuzzle.genererVue();
 			    		if (compteurFruitEtPiece[4] == 9) {
 			    			messageVictoire("Le corbeau a gagné en ", root, vueTour, vueDé);
@@ -100,6 +98,18 @@ public class ControleurDé {
 		vueArbre.genererVue();
 		vuePanier.panier.ajouterFruit(fruit);
 		vuePanier.genererVue();
+	}
+	
+	public boolean victoireJoueur(int[] compteurFruitEtPiece) {
+		int i=0;
+		boolean victoire = true;
+		while ((i < 4) && victoire) {
+			if (compteurFruitEtPiece[i] != 0) {
+				victoire = false;
+			}
+			i++;
+		}
+		return victoire;
 	}
 
 

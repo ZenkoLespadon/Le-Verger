@@ -35,7 +35,8 @@ public class Main extends Application {
 		GridPane hautDuVerger = new GridPane();
 		
 		GridPane basDuVerger = new GridPane();
-		basDuVerger.setPadding(new Insets(450, 0, 0, 50));
+		basDuVerger.setPadding(new Insets(480, 0, 0, 0));
+		
 		
 		
 		VueFruit vueCerise = new VueFruit(Fruit.CERISE, new Image("file:img/Cerise.png"));
@@ -78,6 +79,9 @@ public class Main extends Application {
 		VuePuzzle vuePuzzle = new VuePuzzle(puzzle);
 	
 		
+		vuePanierCerises.getConteneur().setPadding(new Insets(0, -100, 0, 50));
+		vuePanierPommes.getConteneur().setPadding(new Insets(0, 50, 0, -100));
+		
 		basDuVerger.add(vuePanierCerises.getConteneur(), 0, 0);
 		basDuVerger.add(vuePanierPoires.getConteneur(), 1, 0);
 		basDuVerger.add(vuePuzzle.getConteneur(), 2, 0);
@@ -100,7 +104,6 @@ public class Main extends Application {
 		root.getChildren().add(backgrounds);
 		root.getChildren().add(hautDuVerger);
 		root.getChildren().add(basDuVerger);
-		root.getChildren().add(vuePuzzle.getConteneur());
 		root.getChildren().add(vueDé.getPaneDé());
 		root.getChildren().add(vueTour.getLabel());
 		

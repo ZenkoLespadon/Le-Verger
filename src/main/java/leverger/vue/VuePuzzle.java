@@ -1,6 +1,6 @@
 package leverger.vue;
 
-import javafx.geometry.Insets;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;

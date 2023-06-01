@@ -28,11 +28,12 @@ public class VuePanier {
     }
     
     public StackPane getConteneur() {
-
     	return this.conteneur;
     }
     
     public void genererVue() {
+    	
+    	//TODO Changer les deux gridpanes en un seul gridpane avec un padding negatif
     	
     	
 		int i;
@@ -40,7 +41,7 @@ public class VuePanier {
 		int k=0;
 	
 		GridPane mesFruits = new GridPane();
-		mesFruits.setPadding(new Insets (60,0,0,75));
+		mesFruits.setPadding(new Insets (60,0,0,0));
 	
 	    ImageView vueHautDuPanier = new ImageView(this.imageDuHaut);
 	    vueHautDuPanier.setFitWidth(375);
@@ -60,34 +61,23 @@ public class VuePanier {
 	}
     
     public void ajouterFruit(ArrayList<Fruit> fruits){
+    	int i;
+    	int j;
     	int nbFruit = fruits.size();
-    	GridPane gridFruits1 = new GridPane();
-    	GridPane gridFruits2 = new GridPane();
     	
-    	int k = 0;
-            
-    	for (int i = 0; i < 5; i++) {
-    		k++;
-    		if (k > nbFruit) {
-    			break;
-    		}
+    	GridPane gridFruits = new GridPane();
+    	gridFruits.setPadding(new Insets(170, 0, 0, 60));
+    	for (i=0; i < nbFruit; i++) {
     		ImageView imageVueFruit = vueFruit.genererVue();
     		imageVueFruit.setFitWidth(47);
     		imageVueFruit.setFitHeight(47);
-    		gridFruits1.add(imageVueFruit, i, 0);
-        }
-    	gridFruits1.setPadding(new Insets(170, 0, 0, 80));
+    		GridPane.setMargin(imageVueFruit, new Insets(0, -25, 0, 0));
+    		gridFruits.add(imageVueFruit, i, 0);
+    	}
     	
-    	for (int j = 0; j < 5 && k < nbFruit; j++) {
-    		k++;
-    		ImageView imageVueFruit = vueFruit.genererVue();;
-    		imageVueFruit.setFitWidth(47);
-    		imageVueFruit.setFitHeight(47);
-    		gridFruits2.add(imageVueFruit, j, 0);
-        }
-    	gridFruits2.setPadding(new Insets(170, 0, 0, 105));
-    	this.conteneur.getChildren().add(gridFruits1);
-    	this.conteneur.getChildren().add(gridFruits2);
+    	this.conteneur.getChildren().add(gridFruits);
+    	
+    	
     }
 	
 }

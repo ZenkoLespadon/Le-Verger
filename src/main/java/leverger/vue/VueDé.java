@@ -1,11 +1,14 @@
 package leverger.vue;
 
 import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import leverger.modele.Dé;
+import leverger.modele.Face;
 
 public class VueDé {
 
@@ -22,6 +25,12 @@ public class VueDé {
         this.paneDé = new StackPane();
         this.paneDé.getChildren().addAll(triangle, cercle);
         this.paneDé.setPadding(new Insets(0, 0, 50, 0));
+        this.paneDé.setMaxWidth(100);
+        this.paneDé.setMaxHeight(100);
+	}
+	
+	public Dé getDé() {
+		return this.dé;
 	}
 	
 	public StackPane getPaneDé() {
@@ -46,9 +55,38 @@ public class VueDé {
         return triangle;
 	}
 
-	public void setCouleurDuCercle(Color couleur) {
-		this.cercle.setFill(couleur);
+	public void setFaceDuCercle(Face face) {
+		
+		
+		if (face.getImage() != null) {
+			ImageView imageView = new ImageView(face.getImage());
+            imageView.setFitWidth(90);
+            imageView.setFitHeight(90);
+            imageView.setTranslateY(35);
+            this.cercle.setFill(Color.WHITE);
+            this.paneDé.getChildren().add(imageView);		    
+		} else {
+			supprimerImageViewSiElleExiste();
+		    this.cercle.setFill(face.getCouleur());
+		}
+		
 	}
 	
+    private void supprimerImageViewSiElleExiste() {
+        boolean imageViewTrouvee = false;
+        int i = 0;
+        Node noeud;
+        
+        while (!imageViewTrouvee && i < this.paneDé.getChildren().size()) {
+        	
+            if (this.paneDé.getChildren().get(i) instanceof ImageView) {
+                this.paneDé.getChildren().remove(i);
+                imageViewTrouvee = true;
+            } else {
+                i++;
+            }
+        }
+    }
+}
 	
-}	
+	
