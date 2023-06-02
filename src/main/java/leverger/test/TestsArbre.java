@@ -9,8 +9,8 @@ import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import leverger.modèle.Arbre;
-import leverger.modèle.Fruit;
+import leverger.modele.Arbre;
+import leverger.modele.Fruit;
 
 
 class TestsArbre {

@@ -1,4 +1,4 @@
-package leverger.modèle;
+package leverger.modele;
 
 
 public enum Fruit {

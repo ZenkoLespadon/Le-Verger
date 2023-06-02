@@ -2,7 +2,7 @@ package leverger.vue;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import leverger.modèle.Fruit;
+import leverger.modele.Fruit;
 
 public class VueFruit {
 	Fruit fruit;

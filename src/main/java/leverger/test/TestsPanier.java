@@ -7,11 +7,12 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import leverger.modèle.Arbre;
-import leverger.modèle.Fruit;
-import leverger.modèle.Panier;
+import leverger.modele.Arbre;
+import leverger.modele.Fruit;
+import leverger.modele.Panier;
 
-public class testPanier {
+public class TestsPanier {
+	
 	
 	@Test
 	void lePanierDoitEtreVide() {

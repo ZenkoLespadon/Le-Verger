@@ -5,25 +5,25 @@ import org.junit.jupiter.api.Test;
 
 import leverger.modele.Tour;
 public class TestsTour {
+	
     @Test
-    void Test_DeTourà_1() {
+    void compteurDoitEtreEgalA1() {
         Tour tour1 = new Tour();
         assertEquals(1,tour1.getCompteurint());
-
             }
+    
 
     @Test
-    void Test_DeTourà_2() {
+    void compteurDoitEtreEgalA2() {
         Tour tour2 = new Tour();
         tour2.incrementer();
-
         assertEquals(2,tour2.getCompteurint());
     }
+    
 
     @Test
-    void Test_DeTourà_6() {
+    void compteurDoitEtreEgalA6() {
         Tour tour6 = new Tour();
-
         int i = 1;
         while(i <= 5){
             i = i+1;
@@ -31,5 +31,4 @@ public class TestsTour {
         }
         assertEquals(6,tour6.getCompteurint());
     }
-
 }
