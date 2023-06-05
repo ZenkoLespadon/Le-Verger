@@ -1,6 +1,6 @@
 package leverger.vue;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javafx.geometry.Insets;
 import javafx.scene.image.Image;
@@ -12,11 +12,11 @@ import leverger.modele.Panier;
 
 public class VuePanier {
 	
-	public Panier panier;
-	public StackPane conteneur;
-	public VueFruit vueFruit;
-	public Image imageDuHaut;
-	public Image imageDuBas;
+	private Panier panier;
+	private StackPane conteneur;
+	private VueFruit vueFruit;
+	private Image imageDuHaut;
+	private Image imageDuBas;
 	
     public VuePanier(Panier panier, VueFruit vueFruit) {
     	this.panier = panier;
@@ -31,14 +31,11 @@ public class VuePanier {
     	return this.conteneur;
     }
     
+    public Panier getPanier() {
+    	return this.panier;
+    }
+    
     public void genererVue() {
-    	
-    	//TODO Changer les deux gridpanes en un seul gridpane avec un padding negatif
-    	
-    	
-		int i;
-		int j=0;
-		int k=0;
 	
 		GridPane mesFruits = new GridPane();
 		mesFruits.setPadding(new Insets (60,0,0,0));
@@ -53,16 +50,15 @@ public class VuePanier {
 
 	    this.conteneur.getChildren().add(vueHautDuPanier);
 	    
-	    ajouterFruit(panier.fruits);
+	    ajouterFruit(panier.getFruits());
 	    
 	    this.conteneur.getChildren().add(vueBasDuPanier);
 
 		this.conteneur.getChildren().add(mesFruits);
 	}
     
-    public void ajouterFruit(ArrayList<Fruit> fruits){
+    public void ajouterFruit(List<Fruit> fruits){
     	int i;
-    	int j;
     	int nbFruit = fruits.size();
     	
     	GridPane gridFruits = new GridPane();

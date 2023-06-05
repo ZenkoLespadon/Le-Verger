@@ -9,10 +9,10 @@ import leverger.modele.Arbre;
 
 public class VueArbre{
 	
-	public Arbre arbre;
-	public Image image;
-	public StackPane conteneur;
-	public VueFruit vueFruit;
+	private Arbre arbre;
+	private Image image;
+	private StackPane conteneur;
+	private VueFruit vueFruit;
 
     public VueArbre(Arbre arbre, VueFruit vueFruit) {
     	this.arbre = arbre;
@@ -26,6 +26,11 @@ public class VueArbre{
     public StackPane getConteneur() {
     	return this.conteneur;
     }
+    
+    public Arbre getArbre() {
+    	return this.arbre;
+    }
+    
 	public void genererVue() {
 		
 		int nbFruit = this.arbre.getNbFruit();

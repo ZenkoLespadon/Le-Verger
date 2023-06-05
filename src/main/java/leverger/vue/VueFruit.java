@@ -5,8 +5,8 @@ import javafx.scene.image.ImageView;
 import leverger.modele.Fruit;
 
 public class VueFruit {
-	Fruit fruit;
-	Image image;
+	private Fruit fruit;
+	private Image image;
 	
 	public VueFruit(Fruit fruit, Image image) {
 		this.fruit = fruit;
@@ -14,7 +14,14 @@ public class VueFruit {
 	}
 	
 	public ImageView genererVue() {
-		ImageView imageview = new ImageView(image);
-		return imageview;
+		return new ImageView(image);
+	}
+	
+	public Fruit getFruit() {
+		return this.fruit;
+	}
+	
+	public Image getImage() {
+		return this.image;
 	}
 }

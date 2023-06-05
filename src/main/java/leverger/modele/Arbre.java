@@ -1,14 +1,13 @@
 package leverger.modele;
 
 import java.util.ArrayList;
-
-import javafx.scene.image.Image;
+import java.util.List;
 
 public class Arbre  {
-	public ArrayList<Fruit> fruits;
+	private ArrayList<Fruit> fruits;
 	
 	public Arbre(Fruit fruit) {
-		this.fruits = new ArrayList<Fruit>();
+		this.fruits = new ArrayList<>();
 		int i;
 		for (i=0; i<10; i++) {
 			this.fruits.add(fruit);
@@ -23,7 +22,7 @@ public class Arbre  {
 		return this.fruits.size();
 	}
 	
-	public ArrayList<Fruit> getFruits(){
+	public List<Fruit> getFruits(){
 		return this.fruits;
 	}
 	

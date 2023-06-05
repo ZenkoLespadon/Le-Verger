@@ -4,8 +4,8 @@ package leverger.modele;
 public enum Fruit {
 	CERISE("Cerise", "Rouge"),POIRE("Poire", "Jaune"),PRUNE("Prune", "Bleue"),POMME("Pomme", "Verte");
 
-	public final String nom;
-	public final String couleur;
+	private final String nom;
+	private final String couleur;
 	
 	Fruit(String nom, String couleur) {
 		this.nom = nom;
