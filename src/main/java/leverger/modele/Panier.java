@@ -3,15 +3,17 @@ package leverger.modele;
 import java.util.ArrayList;
 import java.util.List;
 
-import javafx.scene.image.Image;
-
 public class Panier {
-    public ArrayList<Fruit> fruits;
+	private ArrayList<Fruit> fruits;
 
 
     public Panier() {
-        this.fruits = new ArrayList<Fruit>();
+        this.fruits = new ArrayList<>();
         }
+    
+    public List<Fruit> getFruits(){
+    	return this.fruits;
+    }
     
     public void ajouterFruit(Fruit fruit) {
     	this.fruits.add(fruit);

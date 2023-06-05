@@ -10,9 +10,9 @@ import javafx.scene.shape.Rectangle;
 import leverger.modele.Puzzle;
 
 public class VuePuzzle {
-	public Puzzle puzzle;
-	public StackPane conteneur;
-	public Image image;
+	private Puzzle puzzle;
+	private StackPane conteneur;
+	private Image image;
 	
 	public VuePuzzle(Puzzle puzzle) {
 		this.puzzle = puzzle;

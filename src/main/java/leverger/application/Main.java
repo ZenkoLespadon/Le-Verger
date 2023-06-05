@@ -69,10 +69,10 @@ public class Main extends Application {
 		VuePanier vuePanierPrunes = new VuePanier(panierPrunes, vuePrune);
 		VuePanier vuePanierPommes = new VuePanier(panierPommes, vuePomme);
 		
-		List<VueArbre> vuesArbre = new ArrayList<VueArbre>();
+		List<VueArbre> vuesArbre = new ArrayList<>();
 		vuesArbre.addAll(Arrays.asList(vueCerisier, vuePoirier, vuePrunier, vuePommier));
 		
-		List<VuePanier> vuesPanier = new ArrayList<VuePanier>();
+		List<VuePanier> vuesPanier = new ArrayList<>();
 		vuesPanier.addAll(Arrays.asList(vuePanierCerises, vuePanierPoires, vuePanierPrunes, vuePanierPommes));
 		
 		Puzzle puzzle = new Puzzle();
@@ -107,7 +107,7 @@ public class Main extends Application {
 		root.getChildren().add(vueDé.getPaneDé());
 		root.getChildren().add(vueTour.getLabel());
 		
-		root.setMargin(vueTour.getLabel(), new Insets(800, 0, 0, 1400));
+		StackPane.setMargin(vueTour.getLabel(), new Insets(800, 0, 0, 1400));
 		
 
 		

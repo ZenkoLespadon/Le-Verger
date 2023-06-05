@@ -1,7 +1,6 @@
 package leverger.vue;
 
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -12,10 +11,10 @@ import leverger.modele.Face;
 
 public class VueDé {
 
-	public Dé dé;
-	public StackPane paneDé;
-	public Circle cercle;
-	public Polygon triangle;
+	private Dé dé;
+	private StackPane paneDé;
+	private Circle cercle;
+	private Polygon triangle;
 	
 	
 	public VueDé(Dé dé, Color couleur) {
@@ -36,19 +35,15 @@ public class VueDé {
 	public StackPane getPaneDé() {
 		return this.paneDé;
 	}
-	public Circle generationCercle(Color couleur) {
-		Circle cercle = new Circle(45, couleur);
+	private Circle generationCercle(Color couleur) {
+		cercle = new Circle(45, couleur);
 		cercle.setTranslateY(30);
 		return cercle;
 	}
 	
-	public Polygon generationTriangle() {
-		Polygon triangle = new Polygon();
-        triangle.getPoints().addAll(new Double[] {
-                100.0, 20.0,
-                0.0, 200.0,
-                200.0, 200.0
-            });
+	private Polygon generationTriangle() {
+		triangle = new Polygon();
+		triangle.getPoints().addAll(100.0, 20.0, 0.0, 200.0, 200.0, 200.0);
         triangle.setStroke(Color.BLACK);
         triangle.setStrokeWidth(5);
         triangle.setFill(Color.WHITE);
@@ -75,7 +70,6 @@ public class VueDé {
     private void supprimerImageViewSiElleExiste() {
         boolean imageViewTrouvee = false;
         int i = 0;
-        Node noeud;
         
         while (!imageViewTrouvee && i < this.paneDé.getChildren().size()) {
         	

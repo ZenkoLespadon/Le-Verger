@@ -1,5 +1,6 @@
 package leverger.test;
 
+
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +25,8 @@ public class TestsPuzzle {
         puzzle.mettrePiece(7);
         
         Assert.assertFalse(puzzle.contientUnePiece(6));
-    }
-	
+    }	
 	
 }
+
+

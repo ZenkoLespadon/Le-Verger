@@ -16,13 +16,13 @@ import leverger.vue.VuePuzzle;
 import leverger.vue.VueTour;
 
 public class ControleurDé {
-	public VueDé vueDé;
-	public VueTour vueTour;
-	int[] compteurFruitEtPiece = {10, 10, 10, 10, 0};
-	public StackPane root;
-	public List<VueArbre> vuesArbre;
-	public List<VuePanier> vuesPanier;
-	public VuePuzzle vuePuzzle;
+	private VueDé vueDé;
+	private VueTour vueTour;
+	private int[] compteurFruitEtPiece = {10, 10, 10, 10, 0};
+	private StackPane root;
+	private List<VueArbre> vuesArbre;
+	private List<VuePanier> vuesPanier;
+	private VuePuzzle vuePuzzle;
 	
 	public ControleurDé(StackPane root, VueDé vueDé, VueTour vueTour, List<VueArbre> vuesArbre, List<VuePanier> vuesPanier, VuePuzzle vuePuzzle){
 		this.vueDé = vueDé;
@@ -34,47 +34,23 @@ public class ControleurDé {
 	}
 	
 	public void initialiserEventHandler() {
-		vueDé.paneDé.setOnMouseClicked(click -> {
-			Face faceTiree = vueDé.dé.lancerDé();
+		vueDé.getPaneDé().setOnMouseClicked(click -> {
+			Face faceTiree = vueDé.getDé().lancerDé();
 			vueDé.setFaceDuCercle(faceTiree);
 			vueTour.incrementerTour();
 			Timeline timeline = new Timeline(new KeyFrame(Duration.millis(250), attente -> {
-			    switch(faceTiree.nom) {
+			    switch(faceTiree.getNom()) {
 			        case "Rouge": 
-			        	if (compteurFruitEtPiece[0] > 0) {
-			        		compteurFruitEtPiece[0]--;
-			        		bougerFruits(vuesArbre.get(0), vuesPanier.get(0));
-				    		if (victoireJoueur(compteurFruitEtPiece)) {
-				    			messageVictoire("Vous avez gagné en ", root, vueTour, vueDé);
-				    		}
-			        	}
+			        	jouerTourFruit(0);
 			            break;
 			        case "Jaune": 
-			        	if (compteurFruitEtPiece[1] > 0) {
-			        		compteurFruitEtPiece[1]--;
-			        		bougerFruits(vuesArbre.get(1), vuesPanier.get(1));
-				    		if (victoireJoueur(compteurFruitEtPiece)) {
-				    			messageVictoire("Vous avez gagné en ", root, vueTour, vueDé);
-				    		}
-			        	}
+			        	jouerTourFruit(1);
 			        	break;
 			        case "Bleue": 
-			        	if (compteurFruitEtPiece[2] > 0) {
-			        		compteurFruitEtPiece[2]--;
-			        		bougerFruits(vuesArbre.get(2), vuesPanier.get(2));
-				    		if (victoireJoueur(compteurFruitEtPiece)) {
-				    			messageVictoire("Vous avez gagné en ", root, vueTour, vueDé);
-				    		}
-			        	}
+			        	jouerTourFruit(2);
 			        	break;
 			        case "Verte": 
-			        	if (compteurFruitEtPiece[3] > 0) {
-			        		compteurFruitEtPiece[3]--;
-			        		bougerFruits(vuesArbre.get(3), vuesPanier.get(3));
-				    		if (victoireJoueur(compteurFruitEtPiece)) {
-				    			messageVictoire("Vous avez gagné en ", root, vueTour, vueDé);
-				    		}
-			        	}
+			        	jouerTourFruit(3);
 			        	break;
 				    default :
 				    	compteurFruitEtPiece[4]++;
@@ -91,16 +67,26 @@ public class ControleurDé {
 
 		});
 	}
+
+	private void jouerTourFruit(int indiceFruit) {
+		if (compteurFruitEtPiece[indiceFruit] > 0) {
+			compteurFruitEtPiece[indiceFruit]--;
+			bougerFruits(vuesArbre.get(indiceFruit), vuesPanier.get(indiceFruit));
+			if (victoireJoueur(compteurFruitEtPiece)) {
+				messageVictoire("Vous avez gagné en ", root, vueTour, vueDé);
+			}
+		}
+	}
 	
-	public void bougerFruits(VueArbre vueArbre, VuePanier vuePanier) {
-		Fruit fruit = vueArbre.arbre.getFruit();
-		vueArbre.arbre.enleverFruit(fruit);
+	private void bougerFruits(VueArbre vueArbre, VuePanier vuePanier) {
+		Fruit fruit = vueArbre.getArbre().getFruit();
+		vueArbre.getArbre().enleverFruit(fruit);
 		vueArbre.genererVue();
-		vuePanier.panier.ajouterFruit(fruit);
+		vuePanier.getPanier().ajouterFruit(fruit);
 		vuePanier.genererVue();
 	}
 	
-	public boolean victoireJoueur(int[] compteurFruitEtPiece) {
+	private boolean victoireJoueur(int[] compteurFruitEtPiece) {
 		int i=0;
 		boolean victoire = true;
 		while ((i < 4) && victoire) {
@@ -113,10 +99,9 @@ public class ControleurDé {
 	}
 
 
-	public void messageVictoire(String debutLabel, StackPane root, VueTour vueTour, VueDé vueDé) {
-		StackPane paneLabel = new StackPane();
+	private void messageVictoire(String debutLabel, StackPane root, VueTour vueTour, VueDé vueDé) {
 		Label compteur = new Label(debutLabel + vueTour.getCompteur() + " tours");
-		vueDé.paneDé.setVisible(false);
+		vueDé.getPaneDé().setVisible(false);
 		vueTour.cacherCompteur();
 		compteur.setStyle("-fx-font-size: 48px; -fx-font-weight: bold; -fx-text-fill: black;"); 
 		root.getChildren().add(compteur);

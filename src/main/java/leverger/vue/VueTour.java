@@ -4,8 +4,8 @@ import javafx.scene.control.Label;
 import leverger.modele.Tour;
 
 public class VueTour {
-	public Tour tour;
-	public Label label;
+	private Tour tour;
+	private Label label;
 	
 	public VueTour(Tour tour) {
 		this.tour = tour;
@@ -26,6 +26,6 @@ public class VueTour {
 	}
 	
 	public int getCompteur() {
-		return this.tour.compteur;
+		return this.tour.getCompteurint();
 	}
 }

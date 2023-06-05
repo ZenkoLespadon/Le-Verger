@@ -6,10 +6,11 @@ import java.util.Random;
 
 
 public class Dé {
-	public List<Face> faces = new ArrayList<Face>();
+	private List<Face> faces = new ArrayList<>();
+	Random random = new Random();
 	
 	public Dé() {
-		faces = new ArrayList<Face>();
+		faces = new ArrayList<>();
 		faces.add(Face.ROUGE);
 		faces.add(Face.JAUNE);
 		faces.add(Face.BLEUE);
@@ -19,10 +20,13 @@ public class Dé {
 	}
 	
 	 public Face lancerDé(){
-	        Random random = new Random();
 	        int nbAleatoire = random.nextInt(this.faces.size());
 	        return faces.get(nbAleatoire);
 	        
 	    }
+	 
+	 public List<Face> getFaces() {
+		 return this.faces;
+	 }
 
 }

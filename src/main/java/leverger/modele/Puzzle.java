@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Puzzle {
-	ArrayList<Boolean> pieces;
+	private ArrayList<Boolean> pieces;
+	Random random = new Random();
 	
 	public Puzzle() {
 		int i;
-		this.pieces = new ArrayList<Boolean>();
+		this.pieces = new ArrayList<>();
 		for (i=0; i < 9; i++) {
 			this.pieces.add(false);
 		}
@@ -23,10 +24,8 @@ public class Puzzle {
 	}
 	
 	public void piocherPiece() {
-		int indicePiece;
 		int nbAleatoire = 0;
 		boolean disponible = false;
-		Random random = new Random();
 		
 		while (!disponible) {
 	        nbAleatoire = random.nextInt(this.pieces.size());

@@ -1,7 +1,7 @@
 package leverger.modele;
 
 public class Tour {
-	public Integer compteur;
+	private Integer compteur;
 	
 	public Tour() {
 		this.compteur = 1;
@@ -18,4 +18,4 @@ public class Tour {
 	public Integer getCompteurint(){
 		return this.compteur;
 	}
-};
+}

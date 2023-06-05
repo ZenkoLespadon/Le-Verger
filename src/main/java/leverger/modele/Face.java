@@ -10,14 +10,18 @@ public enum Face {
     VERTE(Color.GREEN, "Verte", null),
     CORBEAU(null, "Noire", new Image("file:img/Corbeau.png"));
 
-    public final Color couleur;
-    public final String nom;
-    public final Image image;
+    private final Color couleur;
+    private final String nom;
+    private final Image image;
 
     Face(Color couleur, String nom, Image image) {
         this.couleur = couleur;
         this.nom = nom;
         this.image = image;
+    }
+    
+    public String getNom() {
+    	return this.nom;
     }
 
     public Color getCouleur() {
@@ -27,4 +31,5 @@ public enum Face {
     public Image getImage() {
         return image;
     }
+    
 }
