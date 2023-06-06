@@ -22,5 +22,8 @@ public class Panier {
     public Fruit getFruit(int position) {
     	return this.fruits.get(position);
     }
-
+    
+    public int getTaille() {
+    	return this.fruits.size();
+    	}
 } 

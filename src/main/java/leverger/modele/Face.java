@@ -8,7 +8,8 @@ public enum Face {
     JAUNE(Color.YELLOW, "Jaune", null),
     BLEUE(Color.BLUE, "Bleue", null),
     VERTE(Color.GREEN, "Verte", null),
-    CORBEAU(null, "Noire", new Image("file:img/Corbeau.png"));
+    CORBEAU(null, "Corbeau", new Image("file:img/Corbeau.png")),
+	PANIER(null, "Panier", new Image("file:img/Panier.png"));
 
     private final Color couleur;
     private final String nom;

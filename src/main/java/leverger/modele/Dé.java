@@ -16,6 +16,7 @@ public class Dé {
 		faces.add(Face.BLEUE);
 		faces.add(Face.VERTE);
 		faces.add(Face.CORBEAU);
+		faces.add(Face.PANIER);
 		
 	}
 	
