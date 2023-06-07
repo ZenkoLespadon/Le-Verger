@@ -22,15 +22,13 @@ public class ControleurDé {
 	private VueTour vueTour;
 	private StackPane root;
 	private List<VueArbre> vuesArbre;
-	private List<VuePanier> vuesPanier;
 	private VuePuzzle vuePuzzle;
 	
-	public ControleurDé(StackPane root, VueDé vueDé, VueTour vueTour, List<VueArbre> vuesArbre, List<VuePanier> vuesPanier, VuePuzzle vuePuzzle, CompteurFruitEtCorbeau compteurFruitEtCorbeau){
+	public ControleurDé(StackPane root, VueDé vueDé, VueTour vueTour, List<VueArbre> vuesArbre, VuePuzzle vuePuzzle, CompteurFruitEtCorbeau compteurFruitEtCorbeau){
 		this.vueDé = vueDé;
 		this.vueTour = vueTour;
 		this.root = root;
 		this.vuesArbre = vuesArbre;
-		this.vuesPanier = vuesPanier;
 		this.vuePuzzle = vuePuzzle;
 		this.compteurFruitEtCorbeau = compteurFruitEtCorbeau;
 	}

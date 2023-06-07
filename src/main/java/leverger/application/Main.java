@@ -98,7 +98,7 @@ public class Main extends Application {
 		List<VuePanier> vuesPanier = new ArrayList<>();
 		vuesPanier.addAll(Arrays.asList(vuePanierCerises, vuePanierPoires, vuePanierPrunes, vuePanierPommes));
 		
-		ControleurDé controleurdé = new ControleurDé(root, vueDé, vueTour, vuesArbre, vuesPanier, vuePuzzle, compteurFruitEtCorbeau);
+		ControleurDé controleurdé = new ControleurDé(root, vueDé, vueTour, vuesArbre, vuePuzzle, compteurFruitEtCorbeau);
 		controleurdé.initialiserEventHandler();
 	    
 		ImageView backgrounds = new ImageView(new Image("file:img/Background.png"));
@@ -114,6 +114,7 @@ public class Main extends Application {
 		StackPane.setMargin(vueTour.getLabel(), new Insets(800, 0, 0, 1400));
 		
 		Scene scene = new Scene(root, 1600, 900);
+		primaryStage.setResizable(false);
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
