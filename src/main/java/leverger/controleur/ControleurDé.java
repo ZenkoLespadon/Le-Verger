@@ -4,11 +4,12 @@ import java.util.List;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
+import leverger.modele.CompteurFruitEtCorbeau;
 import leverger.modele.Face;
-import leverger.modele.Fruit;
 import leverger.vue.VueArbre;
 import leverger.vue.VueDé;
 import leverger.vue.VuePanier;
@@ -16,21 +17,22 @@ import leverger.vue.VuePuzzle;
 import leverger.vue.VueTour;
 
 public class ControleurDé {
+	private CompteurFruitEtCorbeau compteurFruitEtCorbeau;
 	private VueDé vueDé;
 	private VueTour vueTour;
-	private int[] compteurFruitEtPiece = {10, 10, 10, 10, 0};
 	private StackPane root;
 	private List<VueArbre> vuesArbre;
 	private List<VuePanier> vuesPanier;
 	private VuePuzzle vuePuzzle;
 	
-	public ControleurDé(StackPane root, VueDé vueDé, VueTour vueTour, List<VueArbre> vuesArbre, List<VuePanier> vuesPanier, VuePuzzle vuePuzzle){
+	public ControleurDé(StackPane root, VueDé vueDé, VueTour vueTour, List<VueArbre> vuesArbre, List<VuePanier> vuesPanier, VuePuzzle vuePuzzle, CompteurFruitEtCorbeau compteurFruitEtCorbeau){
 		this.vueDé = vueDé;
 		this.vueTour = vueTour;
 		this.root = root;
 		this.vuesArbre = vuesArbre;
 		this.vuesPanier = vuesPanier;
 		this.vuePuzzle = vuePuzzle;
+		this.compteurFruitEtCorbeau = compteurFruitEtCorbeau;
 	}
 	
 	public void initialiserEventHandler() {
@@ -52,15 +54,12 @@ public class ControleurDé {
 			        case "Verte": 
 			        	jouerTourFruit(3);
 			        	break;
-				    default :
-				    	compteurFruitEtPiece[4]++;
-				    	vuePuzzle.getPuzzle().piocherPiece();
-				    	vuePuzzle.genererVue();
-			    		if (compteurFruitEtPiece[4] == 9) {
-			    			messageVictoire("Le corbeau a gagné en ", root, vueTour, vueDé);
-			    		}
+			        case "Corbeau" :
+					jouerTourCorbeau();
 				    	break;
-			    }
+				    default :
+				    	vueDé.incrementerNbFruitPanierDe2();
+				    	}
 			    
 			}));
 			timeline.play();
@@ -68,36 +67,18 @@ public class ControleurDé {
 		});
 	}
 
-	private void jouerTourFruit(int indiceFruit) {
-		if (compteurFruitEtPiece[indiceFruit] > 0) {
-			compteurFruitEtPiece[indiceFruit]--;
-			bougerFruits(vuesArbre.get(indiceFruit), vuesPanier.get(indiceFruit));
-			if (victoireJoueur(compteurFruitEtPiece)) {
-				messageVictoire("Vous avez gagné en ", root, vueTour, vueDé);
-			}
+	private void jouerTourCorbeau() {
+		compteurFruitEtCorbeau.incrementerCorbeau();
+		vuePuzzle.getPuzzle().piocherPiece();
+		vuePuzzle.genererVue();
+		if (compteurFruitEtCorbeau.testPuzzlePlein()) {
+			messageVictoire("Le corbeau a gagné en ", root, vueTour, vueDé);
 		}
-	}
-	
-	private void bougerFruits(VueArbre vueArbre, VuePanier vuePanier) {
-		Fruit fruit = vueArbre.getArbre().getFruit();
-		vueArbre.getArbre().enleverFruit(fruit);
-		vueArbre.genererVue();
-		vuePanier.getPanier().ajouterFruit(fruit);
-		vuePanier.genererVue();
-	}
-	
-	private boolean victoireJoueur(int[] compteurFruitEtPiece) {
-		int i=0;
-		boolean victoire = true;
-		while ((i < 4) && victoire) {
-			if (compteurFruitEtPiece[i] != 0) {
-				victoire = false;
-			}
-			i++;
-		}
-		return victoire;
 	}
 
+	private void jouerTourFruit(int indiceFruit) {
+		vuesArbre.get(indiceFruit).incrementerNbFruitCliquable();
+	}
 
 	private void messageVictoire(String debutLabel, StackPane root, VueTour vueTour, VueDé vueDé) {
 		Label compteur = new Label(debutLabel + vueTour.getCompteur() + " tours");
@@ -106,6 +87,5 @@ public class ControleurDé {
 		compteur.setStyle("-fx-font-size: 48px; -fx-font-weight: bold; -fx-text-fill: black;"); 
 		root.getChildren().add(compteur);
 	}
-	
 	
 }
